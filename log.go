@@ -1,4 +1,4 @@
-package log
+package loglvl
 
 import (
 	"io"
@@ -7,7 +7,8 @@ import (
 	"github.com/go-kit/kit/log/level"
 )
 
-type LeveledLogger interface {
+// Logger is a logger with levels
+type Logger interface {
 	Info(keyvals ...interface{})
 	Debug(keyvals ...interface{})
 	Error(keyvals ...interface{})
@@ -18,7 +19,8 @@ type logger struct {
 	debug bool
 }
 
-func NewLeveledLogger(w io.Writer, debug bool) LeveledLogger {
+// NewLogger returns a new leveled logger
+func NewLogger(w io.Writer, debug bool) Logger {
 	w = log.NewSyncWriter(w)
 	kitlogger := log.NewLogfmtLogger(w)
 	level.NewFilter(kitlogger, level.AllowAll())

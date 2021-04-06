@@ -1,4 +1,4 @@
-module github.com/jcox250/log
+module github.com/jcox250/loglvl
 
 go 1.16
 
